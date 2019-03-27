@@ -1,0 +1,36 @@
+{
+  "name": "Util.js",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/util.modular.js",
+  "module": "dist/util.esm.js",
+  "browser": "dist/util.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "compress": "uglifyjs dist/domq.js -o dist/domq.min.js -c -m --comments /^!/",
+    "release": "run-s clean build compress",
+    "lint": "eslint src --fix",
+    "clean": "rimraf dist"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.53",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.53",
+    "@babel/preset-env": "^7.0.0-beta.53",
+    "eslint": "^4.17.0",
+    "npm-run-all": "^4.1.2",
+    "onchange": "^3.2.1",
+    "rimraf": "^2.6.3",
+    "rollup": "^0.62.0",
+    "rollup-plugin-babel": "^4.0.0-beta.5",
+    "rollup-plugin-commonjs": "^9.1.3",
+    "rollup-plugin-node-resolve": "^3.3.0",
+    "uglify-js": "^3.1.10"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
