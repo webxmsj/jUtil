@@ -1,5 +1,5 @@
 import U from './Util'
-import * as fn from './UtilFn';
+import * as fn from './core';
 U.extend(
   U,
   fn

@@ -1,8 +1,8 @@
 /*
 * @Author: xiaofei.meng_tic
 * @Date:   2019-03-27 11:46:22
-* @Last Modified by:   xiaofei.meng_tic
-* @Last Modified time: 2019-03-27 15:51:59
+* @Last Modified by:   mengxiaofei
+* @Last Modified time: 2019-03-28 11:17:07
 */
 import U from './Util'
 import {
@@ -178,17 +178,17 @@ function noop() {
 }
 
 export {
-  type,
-  contains,
-  camelize as camelCase,
-  isFunction,
-  isWindow,
-  isPlainObject,
-  isEmptyObject,
-  isNumeric,
-  isArray,
-  inArray,
-  trim,
+  // type,
+  // contains,
+  // camelize as camelCase,
+  // isFunction,
+  // isWindow,
+  // isPlainObject,
+  // isEmptyObject,
+  // isNumeric,
+  // isArray,
+  // inArray,
+  // trim,
   grep,
   noop
 }
