@@ -1,11 +1,11 @@
 {
-  "name": "Util.js",
+  "name": "jUtil.js",
   "version": "0.0.1",
   "description": "A Modular Tool Library",
   "main": "dist/jUtil.modular.js",
   "module": "dist/jUtil.esm.js",
   "browser": "dist/jUtil.js",
-  "homepage": "https://github.com/webxmsj/domutil",
+  "homepage": "https://github.com/webxmsj/jUtil",
   "files": [
     "dist",
     "src"
