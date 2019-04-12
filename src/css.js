@@ -1,4 +1,4 @@
-import D from './d-class';
+import U from './u-class';
 import { isArray } from './vars';
 import { camelize, dasherize, maybeAddPx, type } from './utils';
 
@@ -12,7 +12,7 @@ function css(property, value) {
             if (!element) return
             var props = {}
             var computedStyle = getComputedStyle(element, '');
-            D.each(property, function (_, prop) {
+            U.each(property, function (_, prop) {
                 props[prop] = (element.style[camelize(prop)] || computedStyle.getPropertyValue(prop))
             });
             return props

@@ -1,4 +1,4 @@
-import D from './d-class';
+import U from './u-class';
 import { funcArg, isDocument, isWindow } from './utils';
 
 function subtract(el, dimen) {
@@ -28,7 +28,7 @@ function calc(dimension, value) {
             ? el.documentElement['scroll' + dimensionProperty]
             : subtract(this, dimension)
     else return this.each(function (idx) {
-        el = D(this)
+        el = U(this)
         el.css(dimension, funcArg(this, value, idx, el[dimension]()))
     });
 }

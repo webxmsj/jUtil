@@ -1,4 +1,4 @@
-import D from './d-class';
+import U from './u-class';
 import { funcArg } from './utils';
 
 function val(value) {
@@ -9,7 +9,7 @@ function val(value) {
         })
     } else {
         return this[0] && (this[0].multiple ?
-            D(this[0]).find('option').filter(function () { return this.selected }).pluck('value') :
+            U(this[0]).find('option').filter(function () { return this.selected }).pluck('value') :
             this[0].value)
     }
 }

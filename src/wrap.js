@@ -1,14 +1,14 @@
-import D from './d-class';
+import U from './u-class';
 import { isFunction } from './utils';
 
 function wrap(structure) {
     var func = isFunction(structure)
     if (this[0] && !func)
-        var dom = D(structure).get(0),
+        var dom = U(structure).get(0),
             clone = dom.parentNode || this.length > 1
 
     return this.each(function (index) {
-        D(this).wrapAll(func
+        U(this).wrapAll(func
             ? structure.call(this, index)
             : clone ? dom.cloneNode(true) : dom
         )
@@ -17,11 +17,11 @@ function wrap(structure) {
 
 function wrapAll(structure) {
     if (this[0]) {
-        D(this[0]).before(structure = D(structure))
+        U(this[0]).before(structure = U(structure))
         var children
         // drill down to the inmost element
         while ((children = structure.children()).length) structure = children.first()
-        D(structure).append(this)
+        U(structure).append(this)
     }
     return this
 }
@@ -29,7 +29,7 @@ function wrapAll(structure) {
 function wrapInner(structure) {
     var func = isFunction(structure)
     return this.each(function (index) {
-        var self = D(this),
+        var self = U(this),
             contents = self.contents(),
             dom = func ? structure.call(this, index) : structure
         contents.length ? contents.wrapAll(dom) : self.append(dom)
@@ -38,7 +38,7 @@ function wrapInner(structure) {
 
 function unwrap() {
     this.parent().each(function () {
-        D(this).replaceWith(D(this).children())
+        U(this).replaceWith(U(this).children())
     })
     return this
 }

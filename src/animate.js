@@ -1,4 +1,4 @@
-import D from './d-class';
+import U from './u-class';
 import { document } from './vars';
 import { isFunction, isPlainObject } from './utils';
 import { prefix, eventPrefix, testTransitionProperty } from './animate-utils';
@@ -8,7 +8,7 @@ function normalizeEvent(name) {
   return eventPrefix ? eventPrefix + name : name.toLowerCase()
 }
 
-D.fx = {
+U.fx = {
   off: (eventPrefix === undefined && testTransitionProperty === undefined),
   speeds: { _default: 400, fast: 200, slow: 600 },
   cssPrefix: prefix,
@@ -36,12 +36,12 @@ cssReset[transitionProperty = prefix + 'transition-property'] =
 
 var anim = function (properties, duration, ease, callback, delay) {
   var key, cssValues = {}, cssProperties, transforms = '',
-    that = this, wrappedCallback, endEvent = D.fx.transitionEnd,
+    that = this, wrappedCallback, endEvent = U.fx.transitionEnd,
     fired = false
 
-  if (duration === undefined) duration = D.fx.speeds._default / 1000
+  if (duration === undefined) duration = U.fx.speeds._default / 1000
   if (delay === undefined) delay = 0
-  if (D.fx.off) duration = 0
+  if (U.fx.off) duration = 0
 
   if (typeof properties == 'string') {
     // keyframe animation
@@ -49,7 +49,7 @@ var anim = function (properties, duration, ease, callback, delay) {
     cssValues[animationDuration] = duration + 's'
     cssValues[animationDelay] = delay + 's'
     cssValues[animationTiming] = (ease || 'linear')
-    endEvent = D.fx.animationEnd
+    endEvent = U.fx.animationEnd
   } else {
     cssProperties = []
     // CSS transitions
@@ -69,12 +69,12 @@ var anim = function (properties, duration, ease, callback, delay) {
   wrappedCallback = function (event) {
     if (typeof event !== 'undefined') {
       if (event.target !== event.currentTarget) return // makes sure the event didn't bubble from "below"
-      D(event.target).off(endEvent, wrappedCallback)
+      U(event.target).off(endEvent, wrappedCallback)
     } else
-      D(this).off(endEvent, wrappedCallback) // triggered by setTimeout
+      U(this).off(endEvent, wrappedCallback) // triggered by setTimeout
 
     fired = true
-    D(this).css(cssReset)
+    U(this).css(cssReset)
     callback && callback.call(this)
   }
   if (duration > 0) {
@@ -107,7 +107,7 @@ var animate = function (properties, duration, ease, callback, delay) {
   if (isPlainObject(duration))
     ease = duration.easing, callback = duration.complete, delay = duration.delay, duration = duration.duration
   if (duration) duration = (typeof duration == 'number' ? duration :
-    (D.fx.speeds[duration] || D.fx.speeds._default)) / 1000
+    (U.fx.speeds[duration] || U.fx.speeds._default)) / 1000
   if (delay) delay = parseFloat(delay) / 1000
   return this.anim(properties, duration, ease, callback, delay)
 }

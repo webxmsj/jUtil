@@ -1,4 +1,4 @@
-import D from './d-class';
+import U from './u-class';
 import { funcArg, isObject, setAttribute } from './utils';
 
 function attr(name, value) {

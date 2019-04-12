@@ -1,4 +1,4 @@
-import D from './d-class';
+import U from './u-class';
 import * as core from './core';
 import * as css from './css';
 import * as classes from './classes';
@@ -16,14 +16,14 @@ import * as shortcuts from './event-shortcuts';
 import * as animate from './animate';
 import * as effects from './effects';
 
-D.extend(
-    D,
+U.extend(
+    U,
     core,
     efn
 );
 
-D.extend(
-    D.fn,
+U.extend(
+    U.fn,
     css,
     classes,
     offset,
@@ -40,6 +40,6 @@ D.extend(
     shortcuts['events']
 );
 
-window.D = D;
+window.U = U;
 
-export { D };
+export { U };

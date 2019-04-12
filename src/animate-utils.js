@@ -1,4 +1,4 @@
-import D from './d-class';
+import U from './u-class';
 import { document } from './vars';
 
 var prefix = '',
@@ -7,7 +7,7 @@ var prefix = '',
   testEl = document.createElement('div'),
   testTransitionProperty = testEl.style.transitionProperty;;
 
-if (testEl.style.transform === undefined) D.each(vendors, function (vendor, event) {
+if (testEl.style.transform === undefined) U.each(vendors, function (vendor, event) {
   if (testEl.style[vendor + 'TransitionProperty'] !== undefined) {
     prefix = '-' + vendor.toLowerCase() + '-'
     eventPrefix = event

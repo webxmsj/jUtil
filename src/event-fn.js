@@ -1,4 +1,4 @@
-import D from './d-class';
+import U from './u-class';
 import { document, slice } from './vars';
 import { isFunction } from './utils';
 import { isString, zid, compatible } from './event-utils';
@@ -28,9 +28,9 @@ var proxy = function (fn, context) {
     } else if (isString(context)) {
         if (args) {
             args.unshift(fn[context], fn)
-            return D.proxy.apply(null, args)
+            return U.proxy.apply(null, args)
         } else {
-            return D.proxy(fn[context], fn)
+            return U.proxy(fn[context], fn)
         }
     } else {
         throw new TypeError('expected function')

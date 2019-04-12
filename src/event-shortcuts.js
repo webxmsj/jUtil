@@ -1,4 +1,4 @@
-import D from './d-class';
+import U from './u-class';
 import { on, trigger } from './event';
 
 var events = {};

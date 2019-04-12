@@ -1,4 +1,4 @@
-import D from './d-class';
+import U from './u-class';
 import {
     class2type,
     concat,
@@ -33,8 +33,8 @@ import {
     type
 } from './utils';
 
-D.fn = D.prototype = {
-    constuctor: D,
+U.fn = U.prototype = {
+    constuctor: U,
     length: 0,
     // Because a collection acts like an array
     // copy over these useful array functions.
@@ -44,12 +44,12 @@ D.fn = D.prototype = {
     sort: emptyArray.sort,
     splice: emptyArray.splice,
     indexOf: emptyArray.indexOf,
-    // D's counterpart to jQuery's `$.fn.init` and
+    // U's counterpart to jQuery's `$.fn.init` and
     // takes a CSS selector and an optional context (and handles various
     // special cases).
     init: function (selector, context) {
         var dom;
-        // If nothing given, return an empty D collection
+        // If nothing given, return an empty U collection
         if (!selector) {
             return this
         }
@@ -60,24 +60,24 @@ D.fn = D.prototype = {
             // Note: In both Chrome 21 and Firefox 15, DOM error 12
             // is thrown if the fragment doesn't begin with <
             if (selector[0] == '<' && fragmentRE.test(selector)) {
-                dom = D.fragment(selector, RegExp.$1, context);
+                dom = U.fragment(selector, RegExp.$1, context);
                 selector = null;
             }
             // If there's a context, create a collection on that context first, and select
             // nodes from there
             else if (context !== undefined) {
-                return D(context).find(selector)
+                return U(context).find(selector)
             }
             // If it's a CSS selector, use it to select nodes.
             else {
-                dom = D.qsa(document, selector)
+                dom = U.qsa(document, selector)
             }
         }
         // If a function is given, call it when the DOM is ready
         else if (isFunction(selector)) {
-            return D(document).ready(selector)
+            return U(document).ready(selector)
         }
-        // If a D collection is given, just return it
+        // If a U collection is given, just return it
         else if (isD(selector)) {
             return selector
         }
@@ -92,14 +92,14 @@ D.fn = D.prototype = {
         // If there's a context, create a collection on that context first, and select
         // nodes from there
         else if (context !== undefined) {
-            return D(context).find(selector)
+            return U(context).find(selector)
         }
         // And last but no least, if it's a CSS selector, use it to select nodes.
         else {
-            dom = D.qsa(document, selector)
+            dom = U.qsa(document, selector)
         }
-        // create a new D collection from the nodes found
-        return D.makeArray(dom, selector, this);
+        // create a new U collection from the nodes found
+        return U.makeArray(dom, selector, this);
     },
     // Modify the collection by adding elements to it
     concat: function () {
@@ -112,7 +112,7 @@ D.fn = D.prototype = {
     },
     // `pluck` is borrowed from Prototype.js
     pluck: function (property) {
-        return D.map(this, function (el) { return el[property] })
+        return U.map(this, function (el) { return el[property] })
     },
     toArray: function () {
         return this.get()
@@ -132,25 +132,25 @@ D.fn = D.prototype = {
         return this
     },
     map: function (fn) {
-        return D(D.map(this, function (el, i) { return fn.call(el, i, el) }))
+        return U(U.map(this, function (el, i) { return fn.call(el, i, el) }))
     },
     slice: function () {
-        return D(slice.apply(this, arguments))
+        return U(slice.apply(this, arguments))
     },
     first: function () {
         var el = this[0]
-        return el && !isObject(el) ? el : D(el)
+        return el && !isObject(el) ? el : U(el)
     },
     last: function () {
         var el = this[this.length - 1]
-        return el && !isObject(el) ? el : D(el)
+        return el && !isObject(el) ? el : U(el)
     },
     eq: function (idx) {
         return idx === -1 ? this.slice(idx) : this.slice(idx, +idx + 1)
     }
 }
 
-D.extend = D.fn.extend = function () {
+U.extend = U.fn.extend = function () {
     var options, name, src, copy, copyIsArray, clone,
         target = arguments[0] || {},
         i = 1,
@@ -169,7 +169,7 @@ D.extend = D.fn.extend = function () {
     if (typeof target !== 'object' && !isFunction(target)) {
         target = {};
     }
-    // Extend D itself if only one argument is passed
+    // Extend U itself if only one argument is passed
     if (i === length) {
         target = this;
         i--;
@@ -195,7 +195,7 @@ D.extend = D.fn.extend = function () {
                         clone = src && isPlainObject(src) ? src : {};
                     }
                     // Never move original objects, clone them
-                    target[name] = D.extend(deep, clone, copy);
+                    target[name] = U.extend(deep, clone, copy);
                     // Don't bring in undefined values
                 } else if (copy !== undefined) {
                     target[name] = copy;
@@ -207,7 +207,7 @@ D.extend = D.fn.extend = function () {
     return target;
 }
 
-D.extend({
+U.extend({
     // Make DOM Array
     makeArray: function (dom, selector, me) {
         var i, len = dom ? dom.length : 0
@@ -216,7 +216,7 @@ D.extend({
         me.selector = selector || ''
         return me;
     },
-    // D's CSS selector
+    // U's CSS selector
     qsa: function (element, selector) {
         var found,
             maybeID = selector[0] == '#',
@@ -249,7 +249,7 @@ D.extend({
         var dom, nodes, container
 
         // A special case optimization for a single tag
-        if (singleTagRE.test(html)) dom = D(document.createElement(RegExp.$1))
+        if (singleTagRE.test(html)) dom = U(document.createElement(RegExp.$1))
 
         if (!dom) {
             if (html.replace) html = html.replace(tagExpanderRE, '<$1></$2>')
@@ -258,14 +258,14 @@ D.extend({
 
             container = containers[name]
             container.innerHTML = '' + html
-            dom = D.each(slice.call(container.childNodes), function () {
+            dom = U.each(slice.call(container.childNodes), function () {
                 container.removeChild(this)
             });
         }
 
         if (isPlainObject(properties)) {
-            nodes = D(dom)
-            D.each(properties, function (key, value) {
+            nodes = U(dom)
+            U.each(properties, function (key, value) {
                 if (methodAttributes.indexOf(key) > -1) nodes[key](value)
                 else nodes.attr(key, value)
             });
@@ -283,7 +283,7 @@ D.extend({
         var match, parent = element.parentNode,
             temp = !parent
         if (temp) (parent = tempParent).appendChild(element)
-        match = ~D.qsa(parent, selector).indexOf(element)
+        match = ~U.qsa(parent, selector).indexOf(element)
         temp && tempParent.removeChild(element)
         return match
     },
@@ -317,11 +317,11 @@ D.extend({
 });
 
 // Populate the class2type map
-D.each('Boolean Number String Function Array Date RegExp Object Error'.split(' '), function (i, name) {
+U.each('Boolean Number String Function Array Date RegExp Object Error'.split(' '), function (i, name) {
     class2type['[object ' + name + ']'] = name.toLowerCase()
 });
 
-D.fn.init.prototype = D.fn;
+U.fn.init.prototype = U.fn;
 
 // Export Static
 function grep(elements, callback) {

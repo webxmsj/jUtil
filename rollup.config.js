@@ -16,7 +16,7 @@ const banner = `
 
 export default [
   {
-    input: 'src/domq.js',
+    input: 'src/index.js',
     output: [
       {
         name: 'jUtil',
@@ -42,7 +42,7 @@ export default [
     ],
   },
   {
-    input: 'src/domq.modular.js',
+    input: 'src/index.modular.js',
     output: [
       {
         banner,

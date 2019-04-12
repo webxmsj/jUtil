@@ -1,4 +1,4 @@
-import D from './d-class';
+import U from './u-class';
 
 export * from './core';
 export * from './css';
@@ -15,4 +15,4 @@ export * from './event';
 export * from './event-fn';
 export * from './animate';
 export * from './effects';
-export { D };
+export { U };

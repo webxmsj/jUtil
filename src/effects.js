@@ -1,4 +1,4 @@
-import D from './d-class';
+import U from './u-class';
 
 var origShow = function () {
   return this.each(function () {
@@ -26,14 +26,14 @@ function anim(el, speed, opacity, scale, callback) {
   var props = { opacity: opacity }
   if (scale) {
     props.scale = scale
-    el.css(D.fx.cssPrefix + 'transform-origin', '0 0')
+    el.css(U.fx.cssPrefix + 'transform-origin', '0 0')
   }
   return el.animate(props, speed, null, callback)
 }
 
 function hideHelper(el, speed, scale, callback) {
   return anim(el, speed, 0, scale, function () {
-    origHide.call(D(this))
+    origHide.call(U(this))
     callback && callback.call(this)
   })
 }
@@ -55,7 +55,7 @@ var toggle = function (speed, callback) {
   if (speed === undefined || typeof speed == 'boolean')
     return origToggle.call(this, speed)
   else return this.each(function () {
-    var el = D(this)
+    var el = U(this)
     el[el.css('display') == 'none' ? 'show' : 'hide'](speed, callback)
   })
 }
@@ -77,7 +77,7 @@ var fadeOut = function (speed, callback) {
 
 var fadeToggle = function (speed, callback) {
   return this.each(function () {
-    var el = D(this)
+    var el = U(this)
     el[
       (el.css('opacity') == 0 || el.css('display') == 'none') ? 'fadeIn' : 'fadeOut'
     ](speed, callback)

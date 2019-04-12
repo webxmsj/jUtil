@@ -1,4 +1,4 @@
-import D from './d-class';
+import U from './u-class';
 import { emptyArray } from './vars';
 import { className, classRE, funcArg } from './utils';
 
@@ -18,7 +18,7 @@ function addClass(name) {
         var cls = className(this),
             newName = funcArg(this, name, idx, cls)
         newName.split(/\s+/g).forEach(function (klass) {
-            if (!D(this).hasClass(klass)) classList.push(klass)
+            if (!U(this).hasClass(klass)) classList.push(klass)
         }, this)
         classList.length && className(this, cls + (cls ? ' ' : '') + classList.join(' '))
     })
@@ -40,7 +40,7 @@ function removeClass(name) {
 function toggleClass(name, when) {
     if (!name) return this
     return this.each(function (idx) {
-        var $this = D(this),
+        var $this = U(this),
             names = funcArg(this, name, idx, className(this))
         names.split(/\s+/g).forEach(function (klass) {
             (when === undefined ? !$this.hasClass(klass) : when)

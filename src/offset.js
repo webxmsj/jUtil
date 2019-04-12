@@ -1,10 +1,10 @@
-import D from './d-class';
+import U from './u-class';
 import { document, rootNodeRE, contains } from './vars';
 import { funcArg, isWindow } from './utils';
 
 function offset(coordinates) {
     if (coordinates) return this.each(function (index) {
-        var $this = D(this),
+        var $this = U(this),
             coords = funcArg(this, coordinates, index, $this.offset()),
             parentOffset = $this.offsetParent().offset(),
             props = {
@@ -40,12 +40,12 @@ function position() {
     // Subtract element margins
     // note: when an element has margin: auto the offsetLeft and marginLeft
     // are the same in Safari causing offset.left to incorrectly be 0
-    offset.top -= parseFloat(D(elem).css('margin-top')) || 0
-    offset.left -= parseFloat(D(elem).css('margin-left')) || 0
+    offset.top -= parseFloat(U(elem).css('margin-top')) || 0
+    offset.left -= parseFloat(U(elem).css('margin-left')) || 0
 
     // Add offsetParent borders
-    parentOffset.top += parseFloat(D(offsetParent[0]).css('border-top-width')) || 0
-    parentOffset.left += parseFloat(D(offsetParent[0]).css('border-left-width')) || 0
+    parentOffset.top += parseFloat(U(offsetParent[0]).css('border-top-width')) || 0
+    parentOffset.left += parseFloat(U(offsetParent[0]).css('border-left-width')) || 0
 
     // Subtract the two offsets
     return {
@@ -83,7 +83,7 @@ function scrollLeft(value) {
 function offsetParent() {
     return this.map(function () {
         var parent = this.offsetParent || document.body
-        while (parent && !rootNodeRE.test(parent.nodeName) && D(parent).css('position') == 'static')
+        while (parent && !rootNodeRE.test(parent.nodeName) && U(parent).css('position') == 'static')
             parent = parent.offsetParent
         return parent
     })

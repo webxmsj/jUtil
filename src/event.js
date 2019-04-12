@@ -1,4 +1,4 @@
-import D from './d-class';
+import U from './u-class';
 import { document, slice, contains } from './vars';
 import { isFunction, isPlainObject } from './utils';
 import { zid, isString, returnFalse, compatible} from './event-utils'
@@ -42,7 +42,7 @@ function realEvent(type) {
 function add(element, events, fn, data, selector, delegator, capture) {
   var id = zid(element), set = (handlers[id] || (handlers[id] = []))
   events.split(/\s/).forEach(function (event) {
-    if (event == 'ready') return D(document).ready(fn)
+    if (event == 'ready') return U(document).ready(fn)
     var handler = parse(event)
     handler.fn = fn
     handler.sel = selector
@@ -88,7 +88,7 @@ function createProxy(event) {
   return compatible(proxy, event)
 }
 
-// D.event = { add: add, remove: remove }
+// U.event = { add: add, remove: remove }
 
 // Export
 var one = function (event, selector, data, callback) {
@@ -98,7 +98,7 @@ var one = function (event, selector, data, callback) {
 var on = function (event, selector, data, callback, one) {
   var autoRemove, delegator, $this = this
   if (event && !isString(event)) {
-    D.each(event, function (type, fn) {
+    U.each(event, function (type, fn) {
       $this.on(type, selector, data, fn, one)
     })
     return $this
@@ -118,9 +118,9 @@ var on = function (event, selector, data, callback, one) {
     }
 
     if (selector) delegator = function (e) {
-      var evt, match = D(e.target).closest(selector, element).get(0)
+      var evt, match = U(e.target).closest(selector, element).get(0)
       if (match && match !== element) {
-        evt = D.extend(createProxy(e), { currentTarget: match, liveFired: element })
+        evt = U.extend(createProxy(e), { currentTarget: match, liveFired: element })
         return (autoRemove || callback).apply(match, [evt].concat(slice.call(arguments, 1)))
       }
     }
@@ -132,7 +132,7 @@ var on = function (event, selector, data, callback, one) {
 var off = function (event, selector, callback) {
   var $this = this
   if (event && !isString(event)) {
-    D.each(event, function (type, fn) {
+    U.each(event, function (type, fn) {
       $this.off(type, selector, fn)
     })
     return $this
@@ -149,14 +149,14 @@ var off = function (event, selector, callback) {
 }
 
 var trigger = function (event, args) {
-  event = (isString(event) || isPlainObject(event)) ? D.Event(event) : compatible(event)
+  event = (isString(event) || isPlainObject(event)) ? U.Event(event) : compatible(event)
   event._args = args
   return this.each(function () {
     // handle focus(), blur() by calling them directly
     if (event.type in focus && typeof this[event.type] == 'function') this[event.type]()
     // items in the collection might not be DOM elements
     else if ('dispatchEvent' in this) this.dispatchEvent(event)
-    else D(this).triggerHandler(event, args)
+    else U(this).triggerHandler(event, args)
   })
 }
 
@@ -165,10 +165,10 @@ var trigger = function (event, args) {
 var triggerHandler = function (event, args) {
   var e, result
   this.each(function (i, element) {
-    e = createProxy(isString(event) ? D.Event(event) : event)
+    e = createProxy(isString(event) ? U.Event(event) : event)
     e._args = args
     e.target = element
-    D.each(findHandlers(element, event.type || event), function (i, handler) {
+    U.each(findHandlers(element, event.type || event), function (i, handler) {
       result = handler.proxy(e)
       if (e.isImmediatePropagationStopped()) return false
     })

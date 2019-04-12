@@ -1,4 +1,4 @@
-import D from './d-class';
+import U from './u-class';
 
 var _zid = 1;
 function zid(element) {
@@ -21,7 +21,7 @@ function compatible(event, source) {
   if (source || !event.isDefaultPrevented) {
     source || (source = event)
 
-    D.each(eventMethods, function (name, predicate) {
+    U.each(eventMethods, function (name, predicate) {
       var sourceMethod = source[name]
       event[name] = function () {
         this[predicate] = returnTrue

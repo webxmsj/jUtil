@@ -1,4 +1,4 @@
-import D from './d-class';
+import U from './u-class';
 import { document, contains } from './vars';
 import { funcArg, type, isD } from './utils';
 
@@ -10,20 +10,20 @@ var traverseNode = function (node, fn) {
 
 // inside => append, prepend
 var domMani = function (elem, args, fn, inside) {
-    // arguments can be nodes, arrays of nodes, D objects and HTML strings
+    // arguments can be nodes, arrays of nodes, U objects and HTML strings
     var argType,
-        nodes = D.map(args, function (arg) {
+        nodes = U.map(args, function (arg) {
             var arr = []
             argType = type(arg)
             if (argType == 'array') {
                 arg.forEach(function (el) {
                     if (el.nodeType !== undefined) return arr.push(el)
                     else if (isD(el)) return arr = arr.concat(el.get())
-                    arr = arr.concat(D.fragment(el))
+                    arr = arr.concat(U.fragment(el))
                 })
                 return arr
             }
-            return argType == 'object' || arg == null ? arg : D.fragment(arg)
+            return argType == 'object' || arg == null ? arg : U.fragment(arg)
         }),
         parent,
         copyByClone = elem.length > 1;
@@ -36,7 +36,7 @@ var domMani = function (elem, args, fn, inside) {
 
         nodes.forEach(function (node) {
             if (copyByClone) node = node.cloneNode(true)
-            else if (!parent) return D(node).remove()
+            else if (!parent) return U(node).remove()
 
             fn.call(target, node);
 
@@ -73,7 +73,7 @@ function html(html) {
     return 0 in arguments
         ? this.each(function (idx) {
             var originHtml = this.innerHTML
-            D(this).empty().append(funcArg(this, html, idx, originHtml))
+            U(this).empty().append(funcArg(this, html, idx, originHtml))
         })
         : (0 in this ? this[0].innerHTML : null)
 }
@@ -121,27 +121,27 @@ function before() {
 // insertAfter -> after
 // replaceAll -> replaceWith
 function appendTo(html){
-    D(html)['append'](this);
+    U(html)['append'](this);
     return this;
 }
 
 function prependTo(html){
-    D(html)['prepend'](this);
+    U(html)['prepend'](this);
     return this;
 }
 
 function insertAfter(html){
-    D(html)['after'](this);
+    U(html)['after'](this);
     return this;
 }
 
 function insertBefore(html){
-    D(html)['before'](this);
+    U(html)['before'](this);
     return this;
 }
 
 function replaceAll(html){
-    D(html)['replaceWith'](this);
+    U(html)['replaceWith'](this);
     return this;
 }
 

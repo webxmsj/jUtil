@@ -1,4 +1,4 @@
-import D from './d-class';
+import U from './u-class';
 import {
   filter,
   slice,
@@ -56,7 +56,7 @@ function compact(array) {
 function dasherize(str) {
   return str.replace(/::/g, '/')
     .replace(/([A-Z]+)([A-Z][a-z])/g, '$1_$2')
-    .replace(/([a-z\d])([A-Z])/g, '$1_$2')
+    .replace(/([a-z\U])([A-Z])/g, '$1_$2')
     .replace(/_/g, '-')
     .toLowerCase()
 }
@@ -96,23 +96,23 @@ function defaultDisplay(nodeName) {
 }
 
 function flatten(array) {
-  return array.length > 0 ? D.fn.concat.apply([], array) : array
+  return array.length > 0 ? U.fn.concat.apply([], array) : array
 }
 
 function children(element) {
   return 'children' in element ?
     slice.call(element.children) :
-    D.map(element.childNodes, function (node) {
+    U.map(element.childNodes, function (node) {
       if (node.nodeType == 1) return node
     })
 }
 
 function isD(object) {
-  return object instanceof D
+  return object instanceof U
 }
 
 function filtered(nodes, selector) {
-  return selector == null ? D(nodes) : D(nodes).filter(selector)
+  return selector == null ? U(nodes) : U(nodes).filter(selector)
 }
 
 // 'true'  => true
