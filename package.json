@@ -2,16 +2,16 @@
   "name": "Util.js",
   "version": "0.0.1",
   "description": "",
-  "main": "dist/util.modular.js",
-  "module": "dist/util.esm.js",
-  "browser": "dist/util.js",
+  "main": "dist/jUtil.modular.js",
+  "module": "dist/jUtil.esm.js",
+  "browser": "dist/jUtil.js",
   "files": [
     "dist",
     "src"
   ],
   "scripts": {
     "build": "rollup -c",
-    "compress": "uglifyjs dist/domq.js -o dist/domq.min.js -c -m --comments /^!/",
+    "compress": "uglifyjs dist/jUtil.js -o dist/jUtil.min.js -c -m --comments /^!/",
     "release": "run-s clean build compress",
     "lint": "eslint src --fix",
     "clean": "rimraf dist"

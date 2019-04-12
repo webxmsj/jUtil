@@ -16,22 +16,22 @@ const banner = `
 
 export default [
   {
-    input: 'src/index.js',
+    input: 'src/domq.js',
     output: [
       {
-        name: 'util',
+        name: 'jUtil',
         banner,
-        file: "dist/util.js",
+        file: "dist/jUtil.js",
         format: 'umd'
       },
       {
         banner,
-        file: 'dist/util.common.js',
+        file: 'dist/jUtil.common.js',
         format: 'cjs'
       },
       {
         banner,
-        file: 'dist/util.esm.js',
+        file: 'dist/jUtil.esm.js',
         format: 'es'
       }
     ],
@@ -42,11 +42,11 @@ export default [
     ],
   },
   {
-    input: 'src/util.modular.js',
+    input: 'src/domq.modular.js',
     output: [
       {
         banner,
-        file: 'dist/util.modular.js',
+        file: 'dist/jUtil.modular.js',
         format: 'es'
       }
     ],
